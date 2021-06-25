@@ -1,0 +1,7 @@
+# Eureka Cluster 需要修改hosts文件 https://jingyan.baidu.com/article/335530dafcb63719cb41c3ad.html
+路径：C:\WINDOWS\system32\drivers\etc
+修改为：
+################SpringCloud Learn###################
+    127.0.0.1 eureka7001.com
+    127.0.0.1 eureka7002.com
+    127.0.0.1 eureka7003.com

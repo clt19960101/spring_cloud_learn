@@ -1,9 +1,8 @@
 server:
-  port: 8001
+  port: 8002
 spring:
   application:
     name: cloud-provider-service
-
 
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -27,14 +26,13 @@ eureka:
 
   instance:
     #修改eureka主机名
-    instance-id: payment8001
+    instance-id: payment8002
     #访问路径可以显示ip地址
     prefer-ip-address: true
     #Eureka客户端向服务端发送心跳的时间间隔，默认30s
     lease-renewal-interval-in-seconds: 1
     #Eureka服务端在接收到最后一次心跳后等待时间上限，默认是90秒
     lease-expiration-duration-in-seconds: 2
-
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

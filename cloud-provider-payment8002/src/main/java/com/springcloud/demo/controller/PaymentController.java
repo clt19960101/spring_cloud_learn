@@ -33,8 +33,10 @@ public class PaymentController {
      */
     @Resource
     private DiscoveryClient discoveryClient;
+
     /**
      * 写操作用post
+     *
      * @param payment
      * @return
      */
@@ -44,7 +46,7 @@ public class PaymentController {
         int result = paymentService.create(payment);
         if (result > 0) {
             log.info("@数据库插入成功:" + result);
-            return new CommonResult(200, "插入数据库成功,serverPort:"+serverPort, result);
+            return new CommonResult(200, "插入数据库成功,serverPort:" + serverPort, result);
         } else {
             log.info("@数据库插入失败");
             return new CommonResult(404, "插入数据库失败", null);
@@ -58,7 +60,7 @@ public class PaymentController {
         Payment payment = paymentService.getPaymentById(id);
         if (payment != null) {
             log.info("@查询成功啦啦啦啦:" + payment);
-            return new CommonResult(200, "查询成功,serverPort:"+serverPort, payment);
+            return new CommonResult(200, "查询成功,serverPort:" + serverPort, payment);
         } else {
             log.info("@查询失败");
             return new CommonResult(404, "查询失败", null);
@@ -66,26 +68,23 @@ public class PaymentController {
 
     }
 
-
     @GetMapping("/payment/discovery")
     public Object discovery() {
         //得到服务清单列表
         List<String> services = discoveryClient.getServices();
         for (String service : services) {
-            log.info("service:",service);
+            log.info("service:", service);
         }
 
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PROVIDER-SERVICE");
         for (ServiceInstance instance : instances) {
-            log.info("ServiceId:"+instance.getServiceId()+"\tHost:"+instance.getHost()+"\tPort"+instance.getPort()+"\tUri"+instance.getUri());
+            log.info("ServiceId:" + instance.getServiceId(), "Host:" + instance.getHost(), "Port" + instance.getPort(), "Uri" + instance.getUri());
         }
         return discoveryClient;
-
     }
 
-
     @GetMapping("/payment/balance")
-    public String  balance() {
+    public String balance() {
         return serverPort;
 
     }
