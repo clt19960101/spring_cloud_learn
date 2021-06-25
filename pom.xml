@@ -19,6 +19,9 @@
         <module>cloud-providerconsul-payment8006</module>
         <module>cloud-consumerconsul-order80</module>
         <module>cloud-consumeropenfeign-order80</module>
+        <module>cloudalibaba-provider-payment9001</module>
+        <module>cloudalibaba-provider-payment9002</module>
+        <module>cloudalibaba-consumer-nacos-order83</module>
     </modules>
     <!--    pom总的父工程-->
     <packaging>pom</packaging>
