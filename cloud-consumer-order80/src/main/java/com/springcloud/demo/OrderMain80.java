@@ -14,7 +14,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
  * @Version 1.0
  */
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient
 //name为需要访问的服务名
 //因为自定义RoundRobinRule,因此需要注释
 //@RibbonClient(name = "CLOUD-PROVIDER-SERVICE", configuration = MySelfRule.class)
