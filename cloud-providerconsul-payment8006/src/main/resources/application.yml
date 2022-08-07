@@ -8,8 +8,10 @@ spring:
     name: consul-provider-payment
   cloud:
     consul:
-      host: localhost
+      host: http://47.94.23.231
       port: 8500
       discovery:
         #hostname:127.0.0.1
         service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true

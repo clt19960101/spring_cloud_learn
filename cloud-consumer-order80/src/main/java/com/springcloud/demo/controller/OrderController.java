@@ -27,8 +27,8 @@ import java.util.List;
 @Slf4j
 public class OrderController {
     // 只关注微服务实例名称
-      public static final String PAYMENT_URL = "http://localhost:8001";
-//    public static final String PAYMENT_URL = "http://CLOUD-PROVIDER-SERVICE";
+//      public static final String PAYMENT_URL = "http://localhost:8001";
+    public static final String PAYMENT_URL = "http://CLOUD-PROVIDER-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;

@@ -22,6 +22,8 @@
         <module>cloudalibaba-provider-payment9001</module>
         <module>cloudalibaba-provider-payment9002</module>
         <module>cloudalibaba-consumer-nacos-order83</module>
+        <module>cloud-provider-payment8004</module>
+        <module>cloud-consumerzk-order80</module>
     </modules>
     <!--    pom总的父工程-->
     <packaging>pom</packaging>
