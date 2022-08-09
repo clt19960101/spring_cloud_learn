@@ -9,6 +9,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -46,6 +47,17 @@ public class OrderController {
         return restTemplate.postForObject(PAYMENT_URL + "/payment/create", payment, CommonResult.class);
     }
 
+    @PostMapping("/consumer/payment/postForEntity")
+    public CommonResult<Payment> createPostForEntity(Payment payment) {
+        log.info("@payment:" + payment);
+        ResponseEntity<CommonResult> commonResultResponseEntity = restTemplate.postForEntity(PAYMENT_URL + "/payment/create", payment, CommonResult.class);
+        if (commonResultResponseEntity.getStatusCode().is2xxSuccessful()) {
+            return commonResultResponseEntity.getBody();
+        } else {
+            return new CommonResult<>(444, "操作失败");
+        }
+    }
+
 
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult<Payment> create(@PathVariable("id") Long id) {
@@ -62,9 +74,10 @@ public class OrderController {
         //getForEntity() 返回对象为ResponseEntity对象，包含了响应中的一些重要信息，如响应头，响应状态码，响应体等
         ResponseEntity<CommonResult> templateForEntity = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
         if (templateForEntity.getStatusCode().is2xxSuccessful()) {
+            log.info("templateForEntity:{}", templateForEntity);
             return templateForEntity.getBody();
         } else {
-            return new CommonResult<>( 444, "操作失败");
+            return new CommonResult<>(444, "操作失败");
         }
     }
 
@@ -77,7 +90,7 @@ public class OrderController {
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PROVIDER-SERVICE");
         ServiceInstance serviceInstance = myRoundRobinRule.instances(instances);
         URI uri = serviceInstance.getUri();
-        log.info("RUI:"+uri);
+        log.info("RUI:" + uri);
         return restTemplate.getForObject(uri + "/payment/balance", String.class);
     }
 
